@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQProvider", "LINQProvider\LINQProvider.csproj", "{5DDAB931-925E-4649-B4DC-8B285E8FEBE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQProvider.Test", "LINQProvider.Test\LINQProvider.Test.csproj", "{2A9A0298-0B95-471E-859D-55D87CEFBE17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DDAB931-925E-4649-B4DC-8B285E8FEBE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DDAB931-925E-4649-B4DC-8B285E8FEBE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DDAB931-925E-4649-B4DC-8B285E8FEBE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DDAB931-925E-4649-B4DC-8B285E8FEBE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A9A0298-0B95-471E-859D-55D87CEFBE17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A9A0298-0B95-471E-859D-55D87CEFBE17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A9A0298-0B95-471E-859D-55D87CEFBE17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A9A0298-0B95-471E-859D-55D87CEFBE17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74CFAAFB-9BAC-4136-8A77-D540F19A4704}
+	EndGlobalSection
+EndGlobal
