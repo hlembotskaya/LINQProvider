@@ -65,7 +65,7 @@ public class SqlProvider : IQueryProvider
         }
     }
 
-    private string TranslateToSql<T>(Expression expression)
+    public string TranslateToSql<T>(Expression expression)
     {
         string ProcessExpression(Expression expr)
         {
@@ -96,7 +96,7 @@ public class SqlProvider : IQueryProvider
         if (expression is MethodCallExpression methodCall && methodCall.Method.Name == "Where")
         {
             var lambda = (LambdaExpression)((UnaryExpression)methodCall.Arguments[1]).Operand;
-            var resultType = typeof(T).GetGenericArguments()[0];
+            var resultType = typeof(T).GetGenericArguments().First();
 
             string whereClause = ProcessExpression(lambda.Body);
 

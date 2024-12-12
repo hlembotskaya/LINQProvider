@@ -1,36 +1,50 @@
 using LINQProvider.Models;
 using Microsoft.VisualBasic;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
+using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace LINQProvider.Test
 {
     public class Tests
     {
         SqlProvider sqlProvider;
-        SqlQueryable<Product> queryable;
-        string expectedSql;
+        SqlQueryable<FoodProduct> queryableFood;
+        SqlQueryable<Product> queryableProduct;
+        string expectedResult;
+        string expectedResult1;
 
         [SetUp]
         public void Setup()
         {
-            expectedSql = "SELECT * FROM Products WHERE ((UnitPrice > 100) AND (Type = ’Electronics’))";
+            expectedResult = "SELECT * FROM Products WHERE((UnitPrice > 100) AND (Type = 'Electronics'))";
+            expectedResult1 = "SELECT * FROM FoodProducts WHERE ((Type = 'Vegetable') AND (StockQuantity = 200))";
             sqlProvider = new SqlProvider(@"Server=localhost\SQLEXPRESS;Database=ProfileSample;Trusted_Connection=True;");
-            queryable = new SqlQueryable<Product>(sqlProvider);
+            
+
+
         }
 
         [Test]
-        public void WithProvider()
+        public void ProductTest()
         {
-            var result = queryable.Where(p => p.UnitPrice > 100 && p.Type == "'Electronics'");
-            Assert.AreEqual(result.First().Name, "Smartphone");
-            Assert.AreEqual(result.First().UnitPrice, "450");
+            Expression<Func<Product, bool>> expression = product => product.UnitPrice > 100 && product.Type == "'Electronics'";
+            var queryable = new Product[] { }.AsQueryable().Where(expression);
+            string result = sqlProvider.TranslateToSql<Product>(queryable.Expression);
 
-            //Name: Smartphone, 299
-            //Name: Headphones, 199
-            //Name: Laptop, 799
-            //Name: Tablet, 450
-  
+            Assert.AreEqual(result, expectedResult);
+        }
+
+        [Test]
+        public void FoodProductProvider()
+        {
+            Expression<Func<FoodProduct, bool>> expression = foodProduct => foodProduct.Type == "'Vegetable'" && foodProduct.StockQuantity == 200;
+            var queryable = new FoodProduct[] { }.AsQueryable().Where(expression);
+            string result = sqlProvider.TranslateToSql<FoodProduct>(queryable.Expression);
+
+            Assert.AreEqual(result, expectedResult1);
         }
     }
 }

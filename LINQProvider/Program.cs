@@ -9,12 +9,20 @@ class Program
     static void Main()
     {
         var provider = new SqlProvider(@"Server=localhost\SQLEXPRESS;Database=ProfileSample;Trusted_Connection=True;");
+        
         var queryable = new SqlQueryable<Product>(provider);
-
         var result = queryable.Where(p => p.UnitPrice > 100 && p.Type == "'Electronics'");
+
+        var queryableFood = new SqlQueryable<FoodProduct>(provider);
+        var foodResult = queryableFood.Where(p => p.Type == "'Vegetable'" && p.StockQuantity == 200);
 
         foreach (var product in result) {
             Console.WriteLine($"Name: {product.Name}, {product.UnitPrice}");
+        }
+
+        foreach (var product in foodResult)
+        {
+            Console.WriteLine($"Name: {product.Name}, {product.StockQuantity}");
         }
 
         //string connectionString = @"Server=localhost\SQLEXPRESS;Database=ProfileSample;Trusted_Connection=True;";
